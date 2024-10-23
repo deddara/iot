@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-will
+spec:
+  selector:
+    matchLabels:
+      app: app-will
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: app-will
+    spec:
+      containers:
+      - image: wil42/playground:v2
+        name: app-will
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: "0.2"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
+        ports:
+        - containerPort: 8888

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: aboba-project
+  labels:
+    app: abobaproject
+spec:
+  # Project description
+  description: Our ArgoCD Project to deploy our app locally
+  sourceRepos:
+  - "http://192.168.0.107:30008/root/*"
+  # Only permit to deploy applications in the same cluster
+  destinations:
+  - namespace: dev
+    server: https://kubernetes.default.svc
+  # Enables namespace orphaned resource monitoring.
+  orphanedResources:
+    warn: false

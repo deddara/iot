@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+    app: abobaproject
+  name: aboba-app
+spec:
+  project: aboba-project
+  source:
+    repoURL: https://github.com/deddara/deddara_config.git
+    targetRevision: main
+    path: .
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
